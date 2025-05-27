@@ -3,14 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2025 a las 22:30:22
+-- Tiempo de generación: 26-05-2025 a las 09:22:00
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,19 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `glowmind`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `sesiones`
---
-
-CREATE TABLE `sesiones` (
-  `id_sesion` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `fecha_inicio` timestamp NOT NULL DEFAULT current_timestamp(),
-  `estado` enum('activa','finalizada') DEFAULT 'activa'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `glowmind` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `glowmind`;
 
 -- --------------------------------------------------------
 
@@ -45,7 +33,7 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `rol` enum('usuario','admin') DEFAULT 'usuario'
+  `rol` enum('usuario','psicologo','admin') DEFAULT 'usuario'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -53,20 +41,39 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `rol`) VALUES
-(1, 'marta cardona', 'martacardona@gmail.com', '$2y$10$6PTVH.youWoB3hkkeiq9MO.GUV6r4.lTFHMljJdqZj6wyW5UXDnLW', 'usuario'),
-(3, 'Santiago Dulcey', 'santiaguito@gmail.com', '$2y$10$FF1NrCKjQRECVn8lhiV2wevrhzpakIiyDlej84Hw7G0dpwjmeSlOC', 'usuario'),
-(4, 'Valentin', 'Valentin12@gmail.com', '$2y$10$U2t4nJlaZF3mgGy4h9rlteOrWUcOR.MT5jK9881GZkhzL9d.Omi6S', 'usuario');
+(1, 'Marta Cardona', 'martacardona@gmail.com', '$2y$10$J8z7eX9Y5vZ3Q2W1K6M8.uX9fR4bT2N0P7Q5L3M9K2J1H6G4F8I2', 'usuario'), -- Contraseña: usuario123
+(2, 'Santiago Dulcey', 'santiaguito@gmail.com', '$2y$10$J8z7eX9Y5vZ3Q2W1K6M8.uX9fR4bT2N0P7Q5L3M9K2J1H6G4F8I2', 'usuario'), -- Contraseña: usuario123
+(3, 'Valentin', 'valentin12@gmail.com', '$2y$10$J8z7eX9Y5vZ3Q2W1K6M8.uX9fR4bT2N0P7Q5L3M9K2J1H6G4F8I2', 'usuario'), -- Contraseña: usuario123
+(4, 'Dr. Laura Gómez', 'laura.psicologo@glowmind.com', '$2y$10$J8z7eX9Y5vZ3Q2W1K6M8.uX9fR4bT2N0P7Q5L3M9K2J1H6G4F8I2', 'psicologo'), -- Contraseña: psicologo123
+(5, 'Dr. Carlos Méndez', 'carlos.psicologo@glowmind.com', '$2y$10$J8z7eX9Y5vZ3Q2W1K6M8.uX9fR4bT2N0P7Q5L3M9K2J1H6G4F8I2', 'psicologo'); -- Contraseña: psicologo123
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sesiones`
+--
+
+CREATE TABLE `sesiones` (
+  `id_sesion` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_psicologo` int(11) NOT NULL,
+  `fecha_inicio` timestamp NOT NULL DEFAULT current_timestamp(),
+  `estado` enum('activa','finalizada') DEFAULT 'activa',
+  `notas` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `sesiones`
+--
+
+INSERT INTO `sesiones` (`id_sesion`, `id_usuario`, `id_psicologo`, `fecha_inicio`, `estado`, `notas`) VALUES
+(1, 1, 4, '2025-06-01 10:00:00', 'activa', 'Primera sesión, evaluación inicial'),
+(2, 2, 4, '2025-06-02 14:00:00', 'activa', 'Discusión sobre ansiedad'),
+(3, 3, 5, '2025-06-03 16:00:00', 'finalizada', 'Seguimiento de objetivos');
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `sesiones`
---
-ALTER TABLE `sesiones`
-  ADD PRIMARY KEY (`id_sesion`),
-  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -76,20 +83,28 @@ ALTER TABLE `usuarios`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `sesiones`
+-- Indices de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT;
+  ADD PRIMARY KEY (`id_sesion`),
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_psicologo` (`id_psicologo`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `sesiones`
+--
+ALTER TABLE `sesiones`
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -99,7 +114,9 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  ADD CONSTRAINT `sesiones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `sesiones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `sesiones_ibfk_2` FOREIGN KEY (`id_psicologo`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
