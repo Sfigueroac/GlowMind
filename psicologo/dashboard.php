@@ -671,7 +671,7 @@ $conn->close();
 
         <nav class="sidebar-nav">
             <div class="nav-item">
-                <a href="psicologo.php" class="nav-link tooltip-custom" data-tooltip="Dashboard">
+                <a href="/glowmind/public/index.php" class="nav-link tooltip-custom" data-tooltip="Dashboard">
                     <i class="nav-icon fas fa-home"></i>
                     <span class="nav-text">Inicioㅤ</span>
 
@@ -684,7 +684,7 @@ $conn->close();
                 </a>
             </div>
             <div class="nav-item">
-                <a href="pacientes.php" class="nav-link active tooltip-custom" data-tooltip="Pacientes">
+                <a href="dashboard.php" class="nav-link active tooltip-custom" data-tooltip="Pacientes">
                     <i class="nav-icon fas fa-users"></i>
                     <span class="nav-text">Pacientesㅤ</span>
                 </a>

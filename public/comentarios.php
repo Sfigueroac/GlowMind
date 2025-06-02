@@ -649,13 +649,13 @@ $conn->close();
 
         <nav class="sidebar-nav">
             <div class="nav-item">
-                <a href="usuario.php" class="nav-link tooltip-custom" data-tooltip="Inicio">
+                <a href="index.php" class="nav-link tooltip-custom" data-tooltip="Inicio">
                     <i class="nav-icon fas fa-home"></i>
                     <span class="nav-text">Inicioㅤ</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../usuario/usuario.html" class="nav-link tooltip-custom" data-tooltip="Perfil">
+                <a href="../usuario/dashboard_usuario.php" class="nav-link tooltip-custom" data-tooltip="Perfil">
                     <i class="nav-icon fas fa-user"></i>
                     <span class="nav-text">Perfilㅤ</span>
                 </a>
@@ -667,7 +667,7 @@ $conn->close();
                 </a>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link active tooltip-custom" data-tooltip="Comentarios">
+                <a href="comentarios.php" class="nav-link active tooltip-custom" data-tooltip="Comentarios">
                     <i class="nav-icon fas fa-comments"></i>
                     <span class="nav-text">Comentariosㅤ</span>
                 </a>

@@ -770,13 +770,13 @@ $usuario_rol = $_SESSION['usuario_rol'];
 
         <nav class="sidebar-nav">
             <div class="nav-item">
-                <a href="#" class="nav-link tooltip-custom" data-tooltip="Inicio" onclick="showPage('inicio')">
+                <a href="/glowmind/public/index.php" class="nav-link tooltip-custom" data-tooltip="Inicio" onclick="showPage('inicio')">
                     <i class="nav-icon fas fa-home"></i>
                     <span class="nav-text">Inicioㅤ</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link active tooltip-custom" data-tooltip="Perfil" onclick="showPage('perfil')">
+                <a href="dashboard_usuario.php" class="nav-link active tooltip-custom" data-tooltip="Perfil" onclick="showPage('perfil')">
                     <i class="nav-icon fas fa-user"></i>
                     <span class="nav-text">Perfilㅤ</span>
                 </a>
@@ -788,7 +788,7 @@ $usuario_rol = $_SESSION['usuario_rol'];
                 </a>
             </div>
             <div class="nav-item">
-                <a href="../public/comentarios.html" class="nav-link tooltip-custom" data-tooltip="Comentarios" onclick="showPage('comentarios')">
+                <a href="../public/comentarios.php" class="nav-link tooltip-custom" data-tooltip="Comentarios" onclick="showPage('comentarios')">
                     <i class="nav-icon fas fa-comments"></i>
                     <span class="nav-text">Comentariosㅤ</span>
                 </a>

@@ -620,19 +620,19 @@ $result = $conn->query($sql);
 
         <nav class="sidebar-nav">
             <div class="nav-item">
-                <a href="psicologo.php" class="nav-link tooltip-custom" data-tooltip="Inicio">
+                <a href="/glowmind/public/index.php" class="nav-link tooltip-custom" data-tooltip="Inicio">
                     <i class="nav-icon fas fa-home"></i>
                     <span class="nav-text">Inicioㅤ</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="psicologo.php" class="nav-link tooltip-custom" data-tooltip="Perfil">
+                <a href="#" class="nav-link tooltip-custom" data-tooltip="Perfil">
                     <i class="nav-icon fas fa-user"></i>
                     <span class="nav-text">Perfilㅤ</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link tooltip-custom" data-tooltip="Pacientes">
+                <a href="dashboard.php" class="nav-link tooltip-custom" data-tooltip="Pacientes">
                     <i class="nav-icon fas fa-users"></i>
                     <span class="nav-text">Pacientesㅤ</span>
                 </a>
