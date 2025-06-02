@@ -23,11 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['respuesta'], $_POST['
     }
 }
 
+$psicologo_id = $_SESSION['usuario_id']; // Psicólogo logueado
+
 $sql = "SELECT c.id, c.comentario, c.respuesta, c.created_at, c.responded_at, u.nombre AS usuario_nombre
         FROM comentarios c
         JOIN usuarios u ON c.usuario_id = u.id
+        WHERE c.psicologo_id = ?
         ORDER BY c.created_at DESC";
-$result = $conn->query($sql);
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $psicologo_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
